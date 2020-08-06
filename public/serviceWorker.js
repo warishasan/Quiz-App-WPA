@@ -8,21 +8,21 @@ const cacheAssets = [
 
   '/index.html',
   '/static/js/bundle.js',
-  '/static/js/0.chunk.js',
+  '/static/js/1.chunk.js',
   '/static/js/main.chunk.js',
   '/App.js',
   '/',
 
 
 ];
-
 */
 
 
+
 const cacheAssets = [
- './static/css/main.3d0797e8.chunk.css',
- './static/js/2.c37db9c6.chunk.js',
- './static/js/main.7f068d44.chunk.js',
+ './static/css/main.5054d6d7.chunk.css',
+ './static/js/2.f6a9a0d2.chunk.js',
+ './static/js/main.6eb23ee3.chunk.js',
  './index.html',
  '/'
  

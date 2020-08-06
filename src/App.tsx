@@ -3,6 +3,8 @@ import './App.css';
 import Quizservice, {OfflineQuizEasy,OfflineQuizMedium,OfflineQuizHard} from './services/Quizservice';
 import {quizDataType} from "./types/QuizTypes";
 import QuestionCard from './components/Questioncard';
+import { initNotification } from './services/firebaseService';
+import firebase from 'firebase';
 
 
 
@@ -27,7 +29,44 @@ function App() {
  let [OfflineMediumQuiz, setOfflineMediumQuiz] = useState<quizDataType[]>([]);
  
  let [OfflineHardQuiz, setOfflineHardQuiz] = useState<quizDataType[]>([]);
- 
+
+ const [notificationPerm,setNotificationPerm] = React.useState("");
+
+
+ const messaging = firebase.messaging();
+ initNotification().then((perm)=>{
+
+    
+   if(perm === "granted"){ 
+
+     setNotificationPerm("enabled");
+     messaging.getToken().then((currentToken) => {
+         if (currentToken) {
+             console.log("TOKEN")
+             console.log(currentToken);
+         } else {
+           console.log('No Instance ID token available. Request permission to generate one.');
+
+         }
+       }).catch((err) => {
+         console.log('An error occurred while retrieving token. ', err);
+       });
+
+       
+ }
+   if(perm === "denied"){ 
+
+     setNotificationPerm("disabled");
+   }
+
+
+ })
+
+
+
+
+
+
 
 
 React.useEffect( () => {
@@ -237,7 +276,9 @@ if (connected === false && homeScreen === true){
   
     <div id = "wrapper">
     <div  className = "formContainer">
+    <p className = "notifications"> {notificationPerm ? 'Notifications: ' + notificationPerm : ""}</p>
     <h1 className = "heading">Select Options to generate the quiz</h1>
+   
     <h2 id = "note"> Please Connect to internet to enable all the options </h2>
     <div>
       <form id = "form" onSubmit = {(e)=>handleOptions(e)}>
@@ -306,8 +347,11 @@ if (connected === true && homeScreen === true){
 
     <div id = "wrapper">
     <div  className = "formContainer">
+    
+    <p className = "notifications"> {notificationPerm ? 'Notifications: ' + notificationPerm : ""}</p>
       <h1 className = "heading">Select Options to generate the quiz</h1>
-      <div>
+      
+           <div>
         <form id = "form" onSubmit = {(e)=>handleOptions(e)}>
         <label className = "formSubHeadings" > Enter No. of Questions: </label>
         <input className = "formEntries"  value = {amount} name = "amount" type = "number" max = "50" min = "1" required onChange= {(e)=> {setAmount(parseInt(e.target.value))}} ></input>
@@ -373,7 +417,7 @@ if (connected === true && homeScreen === true){
 
 
     <input className = "submit" type = "submit"/>
-
+   
         </form>
       </div>
 
