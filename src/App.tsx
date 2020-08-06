@@ -235,7 +235,7 @@ if (connected === false && homeScreen === true){
   return (
   
   
-  
+    <div id = "wrapper">
     <div  className = "formContainer">
     <h1 className = "heading">Select Options to generate the quiz</h1>
     <h2 id = "note"> Please Connect to internet to enable all the options </h2>
@@ -281,6 +281,7 @@ if (connected === false && homeScreen === true){
     </div>
 
   </div>
+  </div>
   
   
   
@@ -303,6 +304,7 @@ if (connected === true && homeScreen === true){
 
   return (
 
+    <div id = "wrapper">
     <div  className = "formContainer">
       <h1 className = "heading">Select Options to generate the quiz</h1>
       <div>
@@ -376,6 +378,8 @@ if (connected === true && homeScreen === true){
       </div>
 
     </div>
+
+    </div>
   )
 }
 
@@ -383,12 +387,13 @@ if (connected === true && homeScreen === true){
 if(showResult === true){
   return(
     
+    <div id = "wrapper">
     <div className = "formContainer">
     <h1 className = "heading" >Result</h1>
     <p className = "result">You have scored <b>{score}</b> out of <b>{questions.length}</b></p>
     <button className = "submit" onClick = {()=>{resetQuiz()}}>Reset Quiz</button>
     </div>
-    
+     </div>
     )
   }
     
@@ -396,15 +401,18 @@ if(showResult === true){
 
 if(!questions.length){
 
-  return (<h1 className = "formContainer">Loading</h1>)
+  return ( <div id = "wrapper"> <h1 className = "formContainer">Loading</h1> </div>)
 
 }
   
   return (
+    <div id = "wrapper">
     <div className="formContainer">
      <h1 className = "heading">QUIZ APP</h1>
      <QuestionCard  question = {questions[index].question} options = {questions[index].options} callback = {handleSubmit}></QuestionCard>
     </div>
+    </div>
+
   );
 
 }

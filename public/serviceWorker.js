@@ -20,12 +20,12 @@ const cacheAssets = [
 
 
 const cacheAssets = [
- './static/css/main.d67028a7.chunk.css',
+ './static/css/main.3d0797e8.chunk.css',
  './static/js/2.c37db9c6.chunk.js',
- './static/js/main.6eaf8a1a.chunk.js',
+ './static/js/main.7f068d44.chunk.js',
  './index.html',
  '/'
-
+ 
 ];
 
 
